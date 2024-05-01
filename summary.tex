@@ -533,7 +533,7 @@
         \end{align*}
     \end{itemize}
 \end{defi}
-\begin{thm}{(2.20 Theorem: Lebesgue 測度)}{LebesgueThm}
+\begin{thm}{(2.20 Theorem: Lebesgue 測度, 2.23)}{LebesgueThm}
     $\mathbb{R}^k$上の$\sigma$-加法族$\mathfrak{M}$上で定義された正完備測度$\mu$が存在して, 以下を満たす.
     \begin{enumerate}
         \item[(a)] 任意の$k$-細胞$W$に対して, $m(W) = \mathrm{vol}(W)$である.
@@ -543,11 +543,10 @@
             m(E+x) = m(E) \ (x\in \mathbb{R}^k, E\in \mathfrak{M})
         \end{align*}
         \item[(d)] $\mu$が, 任意のコンパクト集合$K$に対し$\mu(K)<\infty$を満たす$\mathbb{R}^k$上の平行移動に対して不変な正のボレル測度であるとき, ある定数$c$が存在して, 任意のボレル集合$E\subset \mathbb{R}^k$に対し, $\mu(E)=cm(E)$となる.
-        \item[(e)] $\mathbb{R}^k$上の任意の線形変換$T$に対し, ある実数$\Delta(T)$が対応し, 次を満たす.
+        \item[(e)] $\mathbb{R}^k$上の任意の線形変換$T$に対し, 次が成立する.
         \begin{align*}
-            m(T(E))=\Delta(T)m(E) \ (E\in \mathfrak{M})
+            m(T(E))=|\det T|\ m(E) \ (E\in \mathfrak{M})
         \end{align*}
-        特に, $T$が回転であるとき, $\Delta(T)=1$である.
     \end{enumerate}
 \end{thm}
 \begin{defi}{(2.21 Remarks: Lebesgue測度)}{}
@@ -557,6 +556,14 @@
     \end{itemize}
 \end{defi}
 
+\begin{thm}{(2.22 Theorem)}{}
+    \( A \subset \mathbb{R}^1 \) の任意の部分集合がLebesgue可測であれば, \( m(A)=0 \)である.
+\end{thm}
+\begin{cor}{(Corollary)}{}
+    正の測度をもつ任意の集合は、非Lebesgue可測な部分集合をもつ.
+\end{cor}
+
+\subsection{Continuity Properties of Measurable Functions}
 
 \end{document}
 

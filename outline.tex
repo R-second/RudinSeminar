@@ -1,0 +1,161 @@
+\documentclass[a4paper,18pt]{jsarticle}
+\input{/Users/yamadaritsuki/TeX/setting.tex}
+
+\begin{document}
+\begin{tcolorbox}
+  {\Large \bf Real and Complex Analysis アウトライン} \hfill  \today
+\end{tcolorbox}
+
+\section*{Ch1. Abstract Integration}
+
+\begin{enumerate}
+  \item[] \hspace{-8mm}\textbf{Introduction}
+  \item[] \hspace{-8mm}\textbf{Set-Theoretic Notiontations and Terminology}
+  \item 集合の記法とか
+  \item[] \hspace{-8mm}\textbf{The Concept of Measurability}
+  \item \textbf{定義} 位相空間, 開集合, 連続性
+  \item \textbf{定義} 可測空間, 可測集合, 可測関数
+  \item \textbf{例} 距離空間
+  \item \textbf{命題} 局所連続性と連続性の同値性
+  \item 定義1.3から言えること
+  \item \textbf{定理} 合成関数に関する定理
+  \item \textbf{定理} 2変数関数に関する可測性の定理
+  \item いくつかの系と例たち
+  \item \textbf{定理} ある集合族を生成する最小のσ-加法族が存在する
+  \item \textbf{定義} ボレル集合族
+  \item \textbf{定理} 諸々の定理
+  \item \textbf{定義} 上極限, 下極限
+  \item \textbf{定理} 上限, 上極限の可測性
+  \item 正成分と負成分
+  \item[] \hspace{-8mm}\textbf{Simple Functions}
+  \item \textbf{定義} 単関数
+  \item \textbf{定理} 可測関数に収束する単関数の存在
+  \item[] \hspace{-8mm}\textbf{Elementary Properties of Measures}
+  \item \textbf{定義} 測度
+  \item \textbf{定理} 測度の性質
+  \item \textbf{例} 測度の例
+  \item 用語に関するコメント
+  \item[] \hspace{-8mm}\textbf{Arithmetic in $[0, \infty]$}
+  \item $[0, \infty]$上の代数
+  \item[] \hspace{-8mm}\textbf{Integration of Positive Functions}
+  \item \textbf{定義} ルベーグ積分
+  \item ルベーグ積分に関する自明な性質
+  \item \textbf{命題} ルベーグ積分の単関数に関する線形性
+  \item \textbf{定理} ルベーグの単調収束定理
+  \item \textbf{定理} ルベーグ積分と無限級数の交換
+  \item \textbf{定理} Fatouの補題
+  \item \textbf{定理} 変数変換(?)
+  \item[] \hspace{-8mm}\textbf{Integration of Complex Functions}
+  \item \textbf{定義} $L^1(\mu)$
+  \item \textbf{定義} 複素関数のルベーグ積分
+  \item \textbf{定理} 線形性
+  \item \textbf{定理} 絶対値のルベーグ積分
+  \item \textbf{定理} ルベーグの優収束定理
+  \item[] \hspace{-8mm}\textbf{The Role Played by Sets of Measure Zero}
+  \item \textbf{定義} ほとんど至る所で
+  \item \textbf{定理} 測度の完備化
+  \item 測度0を考慮した可測性
+  \item \textbf{定理} ほとんど至る所での無限級数の収束とルベーグ積分との交換
+  \item \textbf{定理} ほとんど至る所での関数の一致
+  \item \textbf{定理} 平均に関する定理
+  \item \textbf{定理} 測度の無限級数和
+\end{enumerate}
+
+\section*{Ch2. Positive Borel Measures}
+
+\begin{enumerate}
+  \item[] \hspace{-8mm}\textbf{Vector Spaces}
+  \item ベクトル空間と線型汎函数の話
+  \item 積分を線型汎函数とみる
+  \item[] \hspace{-8mm}\textbf{Topological Preliminaries}
+  \item \textbf{定義} 閉集合, 閉包, コンパクト, 近傍, ハウスドルフ空間, 局所コンパクト
+  \item \textbf{定理} コンパクト集合の閉部分集合はコンパクト
+  \item \textbf{定理} ハウスドルフ空間でコンパクト集合とコンパクト集合に属さない点は開集合で分離できる
+  \item \textbf{定理} ハウスドルフ空間で共通部分をもたない集合族から共通部分を持たない有限個の集合をとってこれる
+  \item \textbf{定理} $K \subset V \subset \bar{V} \subset U$なる$V$をとれる
+  \item \textbf{定義} 上半連続, 下半連続
+  \item \textbf{定義} 関数の台
+  \item \textbf{定理} コンパクト集合の連続写像による像はコンパクト
+  \item \textbf{記法} $K\prec f \prec V$
+  \item \textbf{補題} Urysohnの補題
+  \item \textbf{定理} 1の分割
+  \item[] \hspace{-8mm}\textbf{The Riesz Representation Theorem}
+  \item \textbf{定理} リースの表現定理
+  \begin{enumerate}
+    \item Construction of $\mu$ and $\mathfrak{m}$
+    \item $\mu$ and $\mathfrak{m}$が所望の性質をもつことの証明
+    \begin{enumerate}
+      \item[Step 1 ] 加算劣加法性
+      \item[Step 2 ] コンパクト集合に対する内部正則性
+      \item[Step 3 ] $\mathfrak{m}_{\mathrm{F}}$が有限測度な開集合を含むこと
+      \item[Step 4 ] 加算加法性
+      \item[Step 5 ] コンパクト集合と開集合を任意に近くとれる
+      \item[Step 6 ] $\mathfrak{m}_{\mathrm{F}}$が和と積でとじていること
+      \item[Step 7 ] $\mathfrak{m}$はすべてのボレル集合を含む$\sigma$-加法族であること
+      \item[Step 8 ] $\mathfrak{m}_{\mathrm{F}}$が有限測度な$\mathfrak{m}$の元をすべて含むこと
+      \item[Step 9 ] $\mu$は$\mathfrak{m}$上の測度であること
+      \item[Step 10] 線型汎函数の像と積分値が一致すること
+    \end{enumerate}
+  \end{enumerate}
+  \item[] \hspace{-8mm}\textbf{Regularity Properties of Borel Measures}
+  \item \textbf{定義} ボレル測度, 外部正則, 内部正則, 正則
+  \item \textbf{定義} $\sigma$-コンパクト, $\sigma$-有限測度
+  \item \textbf{定理} $\sigma$-コンパクト上のリースの表現定理が満たす性質
+  \item \textbf{定理} 測度が正則である十分条件
+  \item[] \hspace{-8mm}\textbf{Lebesgue Measure}
+  \item ユークリッド空間について
+  \item \textbf{定理} Lebesgue測度の構成
+  \item リーマン積分との関連に関するコメント
+  \item \textbf{定理} 任意のLebesgue可測集合は測度0の部分集合をもつ
+  \item scale factor $\Delta(T)$と行列式の関係
+  \item[] \hspace{-8mm} \textbf{Continuity Properties of Measurable Functions}
+  \item \textbf{定理} Lusinの定理
+  \item \textbf{定理} Vitali-Carathéodoryの定理
+\end{enumerate}
+
+
+\section*{Ch3. $L^p$-Spaces}
+
+\begin{enumerate}
+  \item[] \hspace{-8mm}\textbf{Convex Functions and Inequalities}
+  \item \textbf{定義} 凸関数
+  \item \textbf{定理} 開区間上の凸関数は連続
+  \item \textbf{定理} Jensenの不等式
+  \item \textbf{定義} 共役指数
+  \item \textbf{定理} Hölderの不等式とMinkowskiの不等式
+  \item[] \hspace{-8mm}\textbf{The $L^p$-Spaces}
+  \item \textbf{定義} $L^p$ノルムと$L^p$空間
+  \item \textbf{定義} 本質的上限, 本質的有界関数
+  \item \textbf{定理} 積の$L^p$ノルムは$L^p$ノルムの積以下
+  \item \textbf{定理} $L^p$ノルムの三角不等式
+  \item $L^p$空間を距離空間とみなすこと
+  \item \textbf{定理} $L^p$空間の完備性
+  \item \textbf{定理} $L^p$空間のコーシー列は収束する部分列をもつ
+  \item \textbf{定理} 台の測度が有限な可測単関数は$L^p$空間で稠密
+  \item[] \hspace{-8mm}\textbf{Approximation by Continuous Functions}
+  \item \textbf{定理} $C_c(X)$は$L^p$空間で稠密
+  \item $L_p(R^k)$は$C_c(R^k)$の完備化
+  \item \textbf{定義} 無限遠方で消える
+  \item \textbf{定理} $C_0(X)$は$C_c(X)$の完備化
+\end{enumerate}
+
+
+\section*{Ch4. Elementary Hilebert Space Theory}
+
+\begin{enumerate}
+  \item[] \hspace{-8mm}\textbf{Inner Products and Linear Functionals}
+  \item \textbf{定義} 内積空間, 内積, ノルム
+  \item \textbf{定理} Schwarzの不等式
+  \item \textbf{定理} 三角不等式
+  \item \textbf{定義} ヒルベルト空間
+  \item \textbf{例} ヒルベルト空間
+  \item \textbf{定理} 内積とノルムは連続関数
+  \item 部分空間, 閉部分空間
+  \item 凸集合
+  \item 直交, 直交空間
+  \item \textbf{定理} 非空な閉凸集合上でノルムは唯一の最小値をもつ
+  \item \textbf{定理} 任意のベクトルが部分空間の元とその直交空間の元との和に一意に分解できる (直交射影)
+\end{enumerate}
+
+
+\end{document}

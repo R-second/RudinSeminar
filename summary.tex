@@ -1,0 +1,563 @@
+\documentclass[a4paper]{jsarticle}
+\input{/Users/yamadaritsuki/TeX/setting.tex}
+
+\begin{document}
+\begin{tcolorbox}
+  {\Large \bf Real and Complex Analysis 定義・定理集} \hfill  \today
+\end{tcolorbox}
+
+\begin{tabular}[hbtp]{lll}
+    $F_\sigma$ & 閉集合の可算和で表される集合 \\
+    $G_\delta$ & 開集合の可算交差で表される集合 \\
+    $C_c(X)$ & サポートがコンパクトな$X$上の複素連続関数全体の集合(定義\ref{defi:defi2.9}) \\
+    $K\prec f$ & 定義\ref{defi:prec}を参照 \\
+    $f\prec V$ & 定義\ref{defi:prec}を参照 \\
+    $L^1(\mu)$ & $\int_X|f|d\mu < \infty$を満たす$X$上の可測関数全体の集合 \\
+    $L^1(\mathbb{R}^k)$ & $m$をLebesgue測度としたときの$L^1(m)$ \\
+\end{tabular}
+
+\tableofcontents
+
+\section{ABSTRACT INTEGRATION}
+\subsection{Set Theoretic Notations and Terminology}
+省略する.
+
+\subsection{The Concept of Measurability}
+\begin{defi}{(1.2 Definition)}{}
+    \begin{itemize}
+        \item 集合$X$上の集合族$\tau$が$X$上の{\bf 位相}であるとは, 以下を満たすことをいう.
+        \begin{enumerate}
+            \item $\phi, X\in \tau$
+            \item $V_1, \dots, V_n\in \tau$ならば, $V_1\cap\cdots \cap V_n\in \tau$
+            \item $\{V_\alpha\}$を$\tau$からとった任意の集合族とするとき, $\bigcup A_\alpha\in \tau$
+        \end{enumerate}
+        \item $\tau$が$X$上の位相であるとき, $X$を{\bf 位相空間}とよび, $\tau$の要素を{\bf 開集合}とよぶ.
+        \item $X, Y$を位相空間とし, $f:X\to Y$を写像とする. $f$が{\bf 連続}であるとは, 任意の$Y$の開集合$V$に対し, $f^{-1}(V)$が$X$の開集合であることをいう.
+    \end{itemize}
+\end{defi}
+\begin{defi}{(1.3 Definition)}{}
+    \begin{itemize}
+        \item 集合$X$上の集合族$\mathfrak{M}$が$X$上の{\bf $\sigma$-加法族}であるとは, 以下を満たすことをいう.
+        \begin{enumerate}
+            \item $X\in \mathfrak{M}$
+            \item $A\in \mathfrak{M}$ならば, $A^c\in \mathfrak{M}$
+            \item $A_n\in \mathfrak{M} \ (n=1, 2, 3, \dots)$ならば, $\bigcup_{n=1}^\infty A_n\in \mathfrak{M}$
+        \end{enumerate}
+        \item $\mathfrak{M}$が$X$上の$\sigma$-加法族であるとき, $X$を{\bf 可測空間}とよび, $\mathfrak{M}$の要素を{\bf 可測集合}とよぶ.
+        \item $X$を$\sigma$-加法族とし, $Y$を位相空間とする. 写像$f:X\to Y$が{\bf 可測}であるとは, 任意の$Y$の開集合$V$に対し, $f^{-1}(V)$が可測集合であることをいう.
+    \end{itemize}
+\end{defi}
+\begin{prop}{(1.5 Proposition)}{}
+    $X, Y$を位相空間とする. このとき, 写像$f:X\to Y$が連続であることと, $f$が$X$の任意の点で連続であることは同値である.
+\end{prop}
+\begin{thm}{(1.7 Theorem)}{thm1.7}
+    $Y, Z$を位相空間とし, $g:Y\to Z$を連続写像とする.
+    \begin{enumerate}
+        \item[(a)] $X$が位相空間で, $f:X\to Y$が連続であれば, $g\circ f:X\to Z$も連続である.
+        \item[(b)] $X$が可測空間で, $f:X\to Y$が可測であれば, $g\circ f:X\to Z$も可測である.
+    \end{enumerate}
+\end{thm}
+\begin{thm}{(1.8 Theorem)}{thm1.8}
+    $u, v$を可測空間$X$上の実連続関数とし, $\Phi$を$\mathbb{R}^2$から位相空間$Y$への連続関数とする. このとき, 次で定まる写像$h:X\to Y$は可測である.
+    \begin{align*}
+        h(x) = \Phi(u(x), v(x)) \ (x\in X)
+    \end{align*}
+\end{thm}
+\begin{cor}{(1.9 定理\ref{thm:thm1.7}と定理\ref{thm:thm1.8}の系)}{}
+    \begin{enumerate}
+        \item[(a)] $u,v$を$X$上の実可測関数とすると, $f=u+iv$は$X$上の複素可測関数となる.
+        \item[(b)] $f=u+iv$が$X$上の複素可測関数であるとき, $u, v, |f|$は$X$上の実可測関数となる.
+        \item[(c)] $f, g$が$X$上の複素可測関数であるとき, $f+g, fg$も$X$上の複素可測関数となる.
+        \item[(d)] $E$が$X$上の可測集合であるとき, 次の{\bf 特性関数}は$X$上の可測関数となる.
+        \begin{align*}
+            \chi_E(x) = \begin{cases}
+                1 & (x\in E) \\
+                0 & (x\notin E)
+            \end{cases}
+        \end{align*}
+        \item[(e)] $f$が$X$上の複素可測関数であるとき, $X$上のある複素可測関数$\alpha$が存在して, $|\alpha|=1$かつ$f=\alpha|f|$を満たす.
+    \end{enumerate}    
+\end{cor}
+\begin{thm}{(1.10 Theorem)}{}
+    $\mathscr{F}$を$X$上の任意の集合族とするとき, $\mathscr{F}\subset \mathfrak{M}^*$となる最小の$X$上の$\sigma$-加法族$\mathfrak{M}^*$が存在する.
+\end{thm}
+
+\begin{defi}{(1.11 Borel Sets)}{}
+    \begin{itemize}
+        \item $X$を位相空間とする. $X$の{\bf ボレル集合}とは, $X$の開集合を全て含む最小の$\sigma$-加法族の要素をいう.
+        \item $F_\sigma$で, 閉集合の可算和で表される集合をいう.
+        \item $G_\delta$で, 開集合の可算交差で表される集合をいう.\footnote{$F, G$はそれぞれ閉, 開を指し, $\sigma, \delta$はそれぞれ和集合(Summe), 積集合(Durchschnitt)を指す.}
+    \end{itemize}
+\end{defi}
+
+\begin{thm}{(1.12 Theorem)}{}
+    $\mathfrak{M}$を位相空間$X$上の$\sigma$-加法族, $Y$を位相空間, $f:X\to Y$を写像とする.
+    \begin{enumerate}
+        \item[(a)] $\Omega = \{E\subset Y\ | f^{-1}\in \mathfrak{M} \  \}$とするとき, $\Omega$は$Y$上の$\sigma$-加法族となる.
+        \item[(b)] $f$を可測, $E$を$Y$上のボレル集合とすると, $f^{-1}(E)\in \mathfrak{M}$である.
+        \item[(c)] $f$を可測, $Z$を位相空間, $g:Y\to Z$をボレル写像とすると, $g\circ f:X\to Z$は可測である.
+    \end{enumerate}
+\end{thm}
+
+\begin{defi}{(1.13 Definition)}{}
+    $\{a_n\}$を$[-\infty, \infty]$上の数列とし, $\{b_k\}$および$\beta$を次のように定義する.
+    \begin{align*}
+        b_k = \sup_{n\geq k} \{a_n\} \ (k=1, 2, 3, \dots), \ \beta = \inf_k \{b_k\}
+    \end{align*}
+    このとき, $\beta$を$\{a_n\}$の{\bf 上極限}とよび, $\beta = \limsup_{n\to \infty} a_n$とかく. {\bf 下極限}も同様に定義する.
+\end{defi}
+
+\begin{thm}{(1.14 Theorem)}{}
+    $f_n:X\to [-\infty, \infty]$を可測とするとき, 次の関数$g, h$も可測となる.
+    \begin{align*}
+        g = \sup_{n\geq 1} f_n, \ h = \limsup_{n\to \infty} f_n
+    \end{align*}
+\end{thm}
+\begin{cor}{(Corollary)}{}
+    \begin{enumerate}
+        \item[(a)] 複素可測関数の各点収束極限は可測である.
+        \item[(b)] $f, g$を可測とするとき, $\max (f, g), \min(f, g)$も可測である. 特に, $f$の{\bf 正成分}$f^+$および{\bf 負成分}$f^-$も可測となる.
+        \begin{align*}
+            f^+ = \max(f, 0), \ f^- = \max(-f, 0)
+        \end{align*}
+    \end{enumerate}
+\end{cor}
+
+\begin{prop}{(Proposition)}{}
+    $f=g-h, g\geq 0, h\geq 0$のとき, $f^+\leq g$かつ$f^-\leq h$が成立する.
+\end{prop}
+
+\subsection{Simple Functions}
+\begin{defi}{(1.16 Definition)}{}
+    可測空間$X$上の複素関数$s$が{\bf 単関数}であるとは, $s$の値域が有限集合であることをいう. すなわち, $s$が単関数であるとき, 相異なる数$\alpha_1, \dots, \alpha_n$が存在して, $A_i ={x \ | \ s(x)=\alpha_i}$とおけば, 次のように書ける.
+    \begin{align*}
+        s = \sum_{i=1}^n \alpha_i \chi_{A_i}
+    \end{align*}
+\end{defi}
+\begin{thm}{(1.17 Theorem)}{}
+    $f:X\to [0, \infty]$を可測とすると, $X$上のある単関数$s_n \ (n=1, 2, \dots)$が存在し, 以下を満たす.
+    \begin{enumerate}
+        \item[(a)] $0\leq s_1\leq s_2 \leq \cdots\leq f$
+        \item[(b)] $s_n$は$f$に各点収束する.
+    \end{enumerate}
+\end{thm}
+
+\subsection{Elementary Properties of Measures}
+\begin{defi}{(1.18 Definition)}{}
+    \begin{itemize}
+        \item $X$上の{\bf 正測度}とは, 値域を$[0, \infty]$とする$X$上の$\sigma$-加法族$\mathfrak{M}$上の関数$\mu$であって, {\bf 可算加法性}をもつものをいう. ここで, 可算加法性とは, $\{A_i\}$を互いに素な$\mathfrak{M}$上の無限加算個の集合族とするとき, 次を満たすことを指す.
+        \begin{align*}
+            \mu\left( \bigcup_{i=1}^\infty A_i \right) = \sum_{i=1}^\infty \mu(A_i)
+        \end{align*}
+        \item {\bf 測度空間}とは, $\sigma$-加法族上で定義された正測度をもつ可測空間のことである.
+        \item {\bf 複素測度}とは, $\sigma$-加法族上の可算加法的な複素数値関数である.
+    \end{itemize}
+\end{defi}
+\begin{thm}{(1.19 Theorem)}{}
+    $\mu$を$\sigma$-加法族$\mathfrak{M}$上の正測度とする. このとき, 次が成り立つ.
+    \begin{enumerate}
+        \item[(a)] $\mu(\phi) = 0$
+        \item[(b)] $A_1, \dots, A_n$を$\mathfrak{M}$上の互いに素な集合とするとき, $\mu(A_1\cup \cdots \cup A_n) = \mu(A_1) + \cdots +\mu(A_n)$となる.
+        \item[(c)] $A, B\in \mathfrak{M}$かつ$A\subset B$であれば, $\mu(A)\leq \mu(B)$となる.
+        \item[(d)] $A_1, \dots, A_n\in \mathfrak{M}$かつ$A_1\subset A_2\subset \cdots A_3\subset \cdots$のとき,
+        \begin{align*}
+            \lim_{n\to \infty} \mu(A_n) = \mu\left( \bigcup_{i=1}^\infty A_i \right)
+        \end{align*}
+        \item[(e)] $A_1, \dots, A_n\in \mathfrak{M}$かつ$A_1\supset A_2\supset A_3\supset\cdots$のとき,
+        \begin{align*}
+            \lim_{n\to \infty} \mu(A_n) = \mu\left( \bigcap_{i=1}^\infty A_i \right)
+        \end{align*}
+        となり, $\mu(A_1)$は有限である.
+    \end{enumerate}
+\end{thm}
+
+\subsection{Arithmetic in $[0, \infty]$}
+\begin{defi}{(1.22)}{}
+    $[0,\infty)$に$\infty$を加えた集合上で加法および乗法を次のように定義する.
+    \begin{align*}
+        &a+\infty = \infty+a = \infty \\
+        &a\cdot \infty = \infty\cdot a = \begin{cases}
+            \infty & (0<a\leq \infty) \\
+            0 & (a=0)
+        \end{cases}
+    \end{align*}
+\end{defi}
+
+\subsection{Integration of Positive Functions}
+ここでは, $\mathfrak{M}$を$X$上の$sigma$-加法族とし, $\mu$を$\mathfrak{M}$上の正測度とする.
+\begin{defi}{(1.23 Definition)}{}
+    $s:X\to [0, \infty)$を次の形式で与えられる可測単関数とする.
+    \begin{align*}
+        s = \sum_{i=1}^n \alpha_i \chi_{A_i}
+    \end{align*}
+    ここで, $\alpha_1, \dots, \alpha_n$は相異なる実数である. このとき, $E\in \mathfrak{M}$に対して, 次を定義する.
+    \begin{align*}
+        \int_E s d\mu = \sum_{i=1}^n \alpha_i \mu(A_i\cap E)
+    \end{align*}
+    $f:X\to [0,\infty]$が可測かつ$E\in \mathfrak{M}$のとき, $f$の$E$上の$\mu$に関する{\bf Lebesgue積分}を次で決める.
+    \begin{align*}
+        \int_E f d\mu = \sup \left\{ \int_E s d\mu \ | \ 0\leq s\leq f, sは単関数 \right\}
+    \end{align*}
+\end{defi}
+
+\begin{prop}{(1.24 immdiate consequences)}{}
+    以下が成り立つ. (以下で出てくる関数および集合は可測とする.)
+    \begin{enumerate}
+        \item[(a)] $0\leq f\leq g$ならば, $\int_Efd\mu\leq \int_Egd\mu$
+        \item[(b)] $A\subset B, f\geq 0$ならば, $\int_Afd\mu\leq \int_Bfd\mu$
+        \item[(c)] $f\geq 0$かつ$0\leq c<\infty$が定数ならば, $\int_E cfd\mu = c\int_Efd\mu$
+        \item[(d)] 任意の$x\in E$で$f(x)=0$ならば, ($\mu(E)=\infty$であったとしても)$\int_Efd\mu = 0$
+        \item[(e)] $\mu(E)=0$ならば, (任意の$x\in E$で$f(x)=\infty$であったとしても)$\int_Efd\mu=0$
+        \item[(f)] $f\geq 0$ならば, $\int_Efd\mu = \int_X \chi_Efd\mu$
+    \end{enumerate}
+\end{prop}
+
+\begin{prop}{(1.25 Proposition)}{}
+    $s, t$を$X$上の非負な可測単関数とする. $\varphi: \mathfrak{M}\to [0, \infty]$を次のように定めると, $\varphi$は$\mathfrak{M}$上の測度となる.
+    \begin{align*}
+        \varphi(E) = \int_E s d\mu \ (E\in \mathfrak{M})
+    \end{align*}
+    また, 次が成り立つ.
+    \begin{align*}
+        int_X(s+t)d\mu = \int_X sd\mu + \int_X td\mu
+    \end{align*}
+\end{prop}
+
+\begin{thm}{(1.26 Lebesgueの単調収束定理)}{}
+    $\{f_n\}$を$X$上の可測関数列とし, 以下を仮定する.
+    \begin{enumerate}
+        \item[(a)] 任意の$x\in X$に対し, $0\leq f_1(x)\leq f_2(x)\leq \cdots\leq \infty$
+        \item[(b)] 任意の$x\in X$に対し, $\lim_{n\to \infty} f_n(x) = f(x)$
+    \end{enumerate}
+    このとき, $f$は可測であり, 次が成り立つ.
+    \begin{align*}
+        \lim_{n\to \infty} \int_X f_n d\mu = \int_X fd\mu
+    \end{align*}
+\end{thm}
+
+\begin{thm}{(1.27 Theorem)}{}
+    $f_n:X\to [0, \infty]$が可測であり,
+    \begin{align*}
+        f(x) = \sum_{n=1}^\infty f_n(x) \ (x\in X)
+    \end{align*}
+    とすると, 次が成り立つ.
+    \begin{align*}
+        \int_X fd\mu = \sum_{n=1}^\infty \int_X f_nd\mu
+    \end{align*}
+\end{thm}
+\begin{cor}{(Corollary)}{}
+    $a_{ij}\geq 0$のとき, 次が成り立つ.
+    \begin{align*}
+        \sum_{i=1}^\infty \sum_{j=1}^\infty a_{ij} = \sum_{j=1}^\infty \sum_{i=1}^\infty a_{ij}
+    \end{align*}
+\end{cor}
+
+\begin{thm}{(1.28 Fatouの補題)}{}
+    $f_n:X\to [0,\infty]$を可測とする. このとき, 次が成り立つ.
+    \begin{align*}
+        \int_X \liminf_{n\to \infty} f_n d\mu \leq \liminf_{n\to \infty} \int_X f_n d\mu
+    \end{align*}
+\end{thm}
+
+\begin{thm}{(1.29 Theorem)}{}
+    $f:X\to [0, \infty]$を可測とし, 
+    \begin{align*}
+        \varphi(E) = \int_E fd\mu \ (E\in \mathfrak{M})
+    \end{align*}
+    とする. このとき, $\varphi$は$\mathfrak{M}$上の測度であり, 任意の$X$上の非負可測関数$g$に対し, 次が成り立つ.
+    \begin{align*}
+        \int_X gd\varphi = \int_X gfd\mu
+    \end{align*}
+\end{thm}
+
+\subsection{Integration of Complex Functions}
+\begin{defi}{(1.30 Definition)}{}
+    $L^1(\mu)$で$\int_X|f|d\mu < \infty$を満たす$X$上の可測関数全体の集合を意味し, $L^1(\mu)$の要素は{\bf Lebesgue可積分}であるという.
+\end{defi}
+
+\begin{defi}{(1.31 Definition)}{}
+    $u,v$を$X$上の実可測関数とし, $f=u+iv\in L^1(\mu)$とするとき, 任意の可測集合$E$に対して, 次を定義する.
+    \begin{align*}
+        \int_E fd\mu = \int_E u^+d\mu - \int_E u^-d\mu  + i\int_E v^+d\mu - i\int_E v^-d\mu
+    \end{align*}
+\end{defi}
+
+\begin{thm}{(1.32 Theorem)}{}
+    $f, g\in L^1(\mu)$とし, $\alpha, \beta$を複素数とする. このとき, $\alpha f+ \beta g\in L^1(\mu)$であり, 次が成り立つ.
+    \begin{align*}
+        \int_X (\alpha f + \beta g)d\mu = \alpha \int_X fd\mu + \beta \int_X gd\mu
+    \end{align*}
+\end{thm}
+
+\begin{thm}{(1.33 Theorem)}{}
+    $f\in L^1(\mu)$とすると, 次が成り立つ.
+    \begin{align*}
+        \left| \int_X fd\mu \right| \leq \int_X |f|d\mu
+    \end{align*}
+\end{thm}
+
+\begin{thm}{(1.34 Lebesgueの優収束定理)}{}
+    $\{f_n\}$を$X$上の複素可測関数列とし, $f$に各点収束するとする. このとき, ある$g\in L^1(\mu)$が存在して, 
+    \begin{align*}
+        |f_n(x)|\leq g(x) \ (n=1, 2, 3, \dots, x\in X)
+    \end{align*}
+    を満たすならば, $f\in L^1(\mu)$であり,
+    \begin{align*}
+        \lim_{n\to \infty} \int_X |f_n-f|d\mu = 0
+    \end{align*}
+    かつ
+    \begin{align*}
+        \lim_{n\to \infty} \int_X f_nd\mu = \int_X fd\mu
+    \end{align*}
+    が成り立つ.
+\end{thm}
+
+\subsection{The Role Played by Sets of Measure Zero}
+\begin{defi}{(1.35 Definition)}{}
+    「ある条件$P$が$E$上{\bf ほとんど至る所で(a.e.)}成立する」とは, ある$\mathfrak{M}$の元$N\subset E$が存在し, $\mu(N)=0$かつ$P$が$E-N$上成立することをいう.
+\end{defi}
+
+\begin{thm}{(1.36 Theorem)}{thm:completion}
+    $(X, \mathfrak{M}, \mu)$を測度空間とし, $\mathfrak{M}^*$を以下のように定める.
+    \begin{align*}
+        \mathfrak{M}^* = \{ E\subset X \ | \ あるA,B\in \mathfrak{M}が存在し, A\subset E\subset B かつ \mu(B-A)=0 となる \}
+    \end{align*}
+    このとき, $\mu(E)=\mu(A)$と定めれば, $\mathfrak{M}^*$は$\sigma$-加法族であり, $\mu$は$\mathfrak{M}^*$上の正測度となる.
+\end{thm}
+\begin{defi}{}{}
+    定理\ref{thm:thm:completion}中の拡張された$\mathfrak{M}^*$を$\mathfrak{M}$の{\bf $\mu$-完備化}といい, $\mu$は{\bf 完備}であるという.
+\end{defi}
+
+\begin{thm}{(1.38 Theorem)}{}
+    $\{f_n\}$を$X$上ほとんどいたるところで定義された以下を満たす複素可測関数列であるとする.
+    \begin{align*}
+        \sum_{n=1}^\infty \int_X |f_n|d\mu < \infty
+    \end{align*}
+    このとき, 級数
+    \begin{align*}
+        f(x) = \sum_{n=1}^\infty f_n(x) \ (x\in X)
+    \end{align*}
+    はほとんど至るところで収束し, $f\in L^1(\mu)$であり, 次が成り立つ. 
+    \begin{align*}
+        \int_X fd\mu = \sum_{n=1}^\infty \int_X f_nd\mu
+    \end{align*}
+\end{thm}
+\begin{thm}{(1.39 Theorem)}{}
+    \begin{enumerate}
+        \item[(a)] $f:X\to [0,\infty]$を可測であるとし, $E\in \mathfrak{M}$かつ$\int_Efd\mu=0$とする. このとき, $E$上ほとんど至る所で$f=0$である.
+        \item[(b)] $f\in L^1(\mu)$かつ任意の$E\in \mathfrak{M}$に対し$\int_Efd\mu=0$であるとする. このとき, $X$上ほとんど至る所で$f=0$である.
+        \item[(c)] $f\in L^1(\mu)$とし,
+        \begin{align*}
+            \left|\int_Xfd\mu\right| = \int_X|f|d\mu
+        \end{align*}
+        であるとする. このとき, ある定数$\alpha$が存在し, $X$上ほとんど至るところで$\alpha f = |f|$が成り立つ.
+    \end{enumerate}
+\end{thm}
+
+\begin{thm}{(1.40 Theorem)}{}
+    $\mu(X)<\infty$, $f\in L^1(\mu)$, $S$を複素平面上の閉集合とする. また, 平均
+    \begin{align*}
+        A_E(f) = \frac{1}{\mu(E)}\int_E fd\mu
+    \end{align*}
+    が$\mu(E)>0$なる任意の$E\in \mathfrak{M}$に対して, $S$上にあるとする. このとき, $X$上ほとんど至る所で, $f(x)\in S$である.
+\end{thm}
+
+\begin{thm}{(1.41 Theorem)}{}
+    $\{E_k\}$を$X$上の次を満たす可測集合列とする.
+    \begin{align*}
+        \sum_{k=1}^\infty \mu(E_k) < \infty
+    \end{align*}
+    このとき, ほとんど全ての$x\in X$が高々有限個の$E_k$に属する.
+\end{thm}
+
+
+\section{POSITIVE BOREL MEASURES}
+\subsection{Vector Spaces}
+省略する.
+
+\subsection{Topological Preliminaries}
+\begin{defi}{(2.3 Definitions)}{}
+    集合$X$を{\bf 位相空間}とする.
+    \begin{enumerate}
+        \item 集合$E\subset X$が{\bf 閉集合}であるとは, $E^c$が開集合であることをいう.
+        \item 集合$E\subset X$の{\bf 閉包$\bar{E}$}とは, $E$を含む最小の閉集合をいう. 
+        \item 集合$K\subset X$が{\bf コンパクト}であるとは, 任意の$K$の開被覆が有限部分被覆をもつことをいう.
+        \item 点$p\in X$の{\bf 近傍}とは, $p$を含む$X$の開部分集合をいう.
+        \item $X$が{\bf ハウスドルフ空間}であるとは, 相異なる$p, q\in X$に対し, $p$と$q$の近傍$U, V$が存在し, $U\cap V=\phi$となることをいう.
+        \item $X$が{\bf 局所コンパクト}であるとは, $X$の任意の点が, その閉包がコンパクトであるような近傍をもつことをいう.
+    \end{enumerate}
+\end{defi}
+\begin{thm}{(2.4 Theorem)}{}
+    位相空間$X$において, $K$をコンパクト, $F$を閉集合とする.
+
+    $F\subset K$であれば, $F$はコンパクトである.
+\end{thm}
+\begin{cor}{(Corollary)}{}
+    $A\subset B$かつ$B$がコンパクトな閉包をもつなら, $A$もコンパクトな閉包をもつ.
+\end{cor}
+\begin{thm}{(2.5 Theorem)}{}
+    ハウスドルフ空間$X$において, $K\subset X$がコンパクトかつ, $p\in K^c$であるとする. このとき, 開集合$U, W$が存在して, $K\subset W, p\in U$かつ$U\cap W=\phi$となる.
+\end{thm}
+\begin{cor}{(Corollary)}{}
+    \begin{itemize}
+        \item ハウスドルフ空間のコンパクトな部分集合は閉集合である.
+        \item ハウスドルフ空間において, $F$が閉集合で, $K$がコンパクトであれば, $F\cap K$はコンパクトである.
+    \end{itemize}
+\end{cor}
+\begin{thm}{(2.6 Theorem)}{}
+    $\{ K_\alpha\}$をハウスドルフ空間内のコンパクト集合族とする. $\bigcap_\alpha K_\alpha=\phi$であれば, ある$\alpha_1, \cdots, \alpha_n$が存在して, $\bigcap_{i=1}^n K_{\alpha_i}=\phi$となる.
+\end{thm}
+\begin{thm}{(2.7 Theorem)}{}
+    $X$を局所コンパクトハウスドルフ空間, $U\subset X$を開集合とし, $K\subset U$をコンパクトであるとする. このとき, コンパクトな閉包をもつ開集合$V$が存在して, 以下を満たす.
+    \begin{align*}
+        K\subset V\subset \bar{V}\subset U
+    \end{align*}
+\end{thm}
+\begin{defi}{(2.8 Definition)}{}
+    $f$を位相空間上の実(or 拡張実)関数とする.
+    \begin{itemize}
+        \item $f$が{\bf 下半連続}であるとは, 任意の実数$\alpha$に対し, $\{x \ |\ f(x) > \alpha \}$が開集合であることをいう.
+        \item $f$が{\bf 上半連続}であるとは, 任意の実数$\alpha$に対し, $\{x \ |\ f(x) < \alpha \}$が開集合であることをいう.
+    \end{itemize}
+\end{defi}
+\begin{defi}{(2.9 Definition)}{defi2.9}
+    位相空間上の複素関数$f$の{\bf サポート}は, $\{ x \ | \ f(x)\neq 0 \}$の閉包を意味する.
+
+    $C_c(X)$で, サポートがコンパクトな$X$上の複素連続関数全体の集合を表す.
+\end{defi}
+\begin{thm}{(2.10 Theorem)}{}
+    $X, Y$を位相空間とし, $f:X\to Y$を連続とする. $K\subset X$をコンパクトであれば, $f(K)$もコンパクトである.
+\end{thm}
+\begin{cor}{(Corollary)}{}
+    任意の$f\in C_c(X)$の値域は複素平面上のコンパクト集合である.
+\end{cor}
+\begin{defi}{(2.11 Notation)}{prec}
+    $K\prec f$で, 以下を意味する.
+    \begin{itemize}
+        \item $K$がコンパクトである.
+        \item $f\in C_c(X)$である.
+        \item 任意の$x\in X$に対して, $0\leq f(x)\leq 1$である.
+        \item 任意の$x\in K$に対して, $f(x)=1$である.
+    \end{itemize}
+
+    $f\prec V$で, 以下を意味する.
+    \begin{itemize}
+        \item $V$が開集合である.
+        \item $f\in C_c(X)$である.
+        \item 任意の$x\in X$に対して, $0\leq f(x)\leq 1$である.
+        \item $f$のサポートが$V$に含まれる.
+    \end{itemize}
+\end{defi}
+\begin{thm}{(2.12 Urysohnの補題)}{}
+    $X$を局所コンパクトハウスドルフ空間とし, $V\subset X$を開集合, $K\subset V$をコンパクトであるとする. このとき, ある$f\in C_c(X)$が存在して, 以下を満たす.
+    \begin{align*}
+        K\prec f\prec V
+    \end{align*}
+\end{thm}
+\begin{thm}{(2.13 Theorem: 1の分割)}{}
+    $V_1, \dots, V_n$を局所コンパクトハウスドルフ空間$X$上の開集合, $K$をコンパクトとし, 
+    \begin{align*}
+        K\subset V_1\cup \cdots \cup V_n
+    \end{align*}
+    であるとする. このとき, $h_i \prec V_i\ (i=1, \dots, n)$が存在して, 以下を満たす.
+    \begin{align*}
+        h_1(x)+\cdots+h_n(x) = 1 \ (x\in K)
+    \end{align*}
+\end{thm}
+
+\subsection{The Riesz Representation Theorem}
+\begin{thm}{(2.14 Rieszの表現定理)}{Riesz}
+    $X$を局所コンパクトハウスドルフ空間とし, $\lambda$を$C_c(X)$上の正線型汎函数とする. このとき, $X$のボレル集合を全て含む$\sigma$-加法族$\mathfrak{M}$と, $\mathfrak{M}$上の一意な正測度$\mu$が存在して, 次を満たす.
+    \begin{enumerate}
+        \item[(a)] 任意の$f\in C_c(X)$に対して, $\Lambda f = \int _X f d\mu$
+        \item[(b)] 任意のコンパクト集合$K\subset X$に対して, $\mu(K)<\infty$
+        \item[(c)] 任意の$E\in \mathfrak{M}$に対し, 次が成り立つ.
+        \begin{align*}
+            \mu(E) = \inf \{ \mu(V) \ | \ E\subset V, Vは開集合 \}
+        \end{align*}
+        \item[(d)] 任意の開集合$E$と, $\mu(E)<\infty$なる任意の集合$E\in \mathfrak{M}$に対し, 次が成り立つ.
+        \begin{align*}
+            \mu(E) = \sup \{ \mu(K) \ | \ K\subset E, K はコンパクト \}
+        \end{align*}
+        \item[(e)] $E\in \mathfrak{M}$, $A\subset E$, $\mu(E)=0$であれば, $A\in \mathfrak{M}$ (完備性)
+    \end{enumerate}
+\end{thm}
+
+\subsection{Regularity Properties of Borel Measures}
+\begin{defi}{(2.15 Definition)}{}
+    \begin{itemize}
+        \item 局所コンパクトハウスドルフ空間$X$上のボレル集合を全て含む$\sigma$-加法族上で定義された測度$\mu$を, $X$上の{\bf ボレル測度}という.
+        \item $\mu$が正のとき, ボレル集合$E\subset X$が{\bf 外部正則}であるとは, 次が成立することをいう.
+        \begin{align*}
+            \mu(E) = \inf \{ \mu(V) \ | \ E\subset V, Vは開集合 \}
+        \end{align*}
+        \item $\mu$が正のとき, ボレル集合$E\subset X$が{\bf 内部正則}であるとは, 次が成立することをいう.
+        \begin{align*}
+            \mu(E) = \sup \{ \mu(K) \ | \ K\subset E, K はコンパクト \}
+        \end{align*}
+        \item 任意のボレル集合に対して, 外部正則かつ内部正則である測度を, {\bf 正則}であるという.
+    \end{itemize}
+\end{defi}
+\begin{defi}{(2.16 Definition)}{}
+    \begin{itemize}
+        \item 位相空間上の集合$E$が{\bf $\sigma$-コンパクト}であるとは, $E$が可算個のコンパクト集合の和集合で表されることをいう.
+        \item 測度を$\mu$とする測度空間上の集合$E$が{\bf $\sigma$-有限}であるとは, $E$が$\mu(E_i)<\infty$なる可算個の集合の和集合で表されることをいう.
+    \end{itemize}
+\end{defi}
+\begin{thm}{(2.17 Theorem)}{}
+    $X$を局所コンパクト, $\sigma$-コンパクトなハウスドルフ空間であるとする. $\mathfrak{M}$と$\mu$がリースの表現定理\ref{thm:Riesz}の条件を満たすとき, $\mathfrak{M}$と$\mu$は以下の性質を満たす.
+    \begin{enumerate}
+        \item[(a)] $E\in \mathfrak{M}$と$\epsilon>0$に対して, 閉集合$F$と開集合$V$が存在し, $F\subset E\subset V$かつ$\mu(V-F)<\epsilon$となる.
+        \item[(b)] $\mu$は$X$上正則なボレル測度である.
+        \item[(c)] $E\in \mathfrak{M}$に対し, $F_\sigma$である$A$と$G_\delta$である$B$が存在し, $A\subset E\subset B$かつ$\mu(B-A)=0$となる.
+    \end{enumerate}
+\end{thm}
+\begin{thm}{(2.18 Theorem)}{}
+    $X$を$X$内の任意の開集合が$\sigma$-コンパクトであるような局所コンパクトハウスドルフ空間とし, $\lambda$を任意のコンパクト集合$K$が$\mu(K)<\infty$を満たすような正ボレル測度とする. このとき, $\lambda$は正則である.
+\end{thm}
+
+\subsection{Lebesgue Measure}
+
+\begin{defi}{(2.19 Euclidean Spaces)}{}
+    \begin{itemize}
+        \item 代数的構造と位相的構造を備えたユークリッド空間$\mathbb{R}^k$. $x=(\xi_1, \dots, \xi_k)\in \mathbb{R}^k$とかく.
+        \item $E\subset \mathbb{R}^k$と$x\in \mathbb{R}^k$に対し, $E+x=\{y+x \ | \ y\in E \}$を$E$の$x$による{\bf 平行移動}という.
+        \item $W=\{x \ | \ \alpha_i < \xi_i<\beta_i, \ 1\leq i\leq k \}$の形の集合を{\bf $k$-細胞}という.
+        \item $k$-細胞の体積を以下で定義する.
+        \begin{align*}
+            \text{vol}(W) = \prod_{i=1}^k (\beta_i-\alpha_i)
+        \end{align*}
+        \item $a\in \mathbb{R}^k, \delta >0$に対し, 以下を$a$を隅とする{\bf $\delta$-box}とよぶ.
+        \begin{align*}
+            Q(a, \delta) = \{ x\in \mathbb{R}^k \ | \ | \alpha_i \leq \xi_i < \alpha_i+\delta, 1\leq i\leq k \}
+        \end{align*}
+    \end{itemize}
+\end{defi}
+\begin{thm}{(2.20 Theorem: Lebesgue 測度)}{LebesgueThm}
+    $\mathbb{R}^k$上の$\sigma$-加法族$\mathfrak{M}$上で定義された正完備測度$\mu$が存在して, 以下を満たす.
+    \begin{enumerate}
+        \item[(a)] 任意の$k$-細胞$W$に対して, $m(W) = \mathrm{vol}(W)$である.
+        \item[(b)] $E\in \mathfrak{M}$であることは, $F_\sigma$である$A$と$G_\delta$である$B$が存在し, $A\subset E\subset B$かつ$m(B-A)=0$となることと同値である. さらに, $m$は正則である.
+        \item[(c)] $m$は平行移動に対し不変である:
+        \begin{align*}
+            m(E+x) = m(E) \ (x\in \mathbb{R}^k, E\in \mathfrak{M})
+        \end{align*}
+        \item[(d)] $\mu$が, 任意のコンパクト集合$K$に対し$\mu(K)<\infty$を満たす$\mathbb{R}^k$上の平行移動に対して不変な正のボレル測度であるとき, ある定数$c$が存在して, 任意のボレル集合$E\subset \mathbb{R}^k$に対し, $\mu(E)=cm(E)$となる.
+        \item[(e)] $\mathbb{R}^k$上の任意の線形変換$T$に対し, ある実数$\Delta(T)$が対応し, 次を満たす.
+        \begin{align*}
+            m(T(E))=\Delta(T)m(E) \ (E\in \mathfrak{M})
+        \end{align*}
+        特に, $T$が回転であるとき, $\Delta(T)=1$である.
+    \end{enumerate}
+\end{thm}
+\begin{defi}{(2.21 Remarks: Lebesgue測度)}{}
+    \begin{itemize}
+        \item 定理\ref{thm:LebesgueThm}における$\mathfrak{M}$の要素を{\bf Lebesgue可測集合}とよび, $m$を{\bf Lebesgue測度}とよぶ.
+        \item $m$をLebesgue測度とするとき, $L^1(m)$の代わりに$L^1(\mathbb{R}^k)$とかく.
+    \end{itemize}
+\end{defi}
+
+
+\end{document}
+
+

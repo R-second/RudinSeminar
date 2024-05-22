@@ -564,6 +564,31 @@
 \end{cor}
 
 \subsection{Continuity Properties of Measurable Functions}
+\begin{thm}{(2.24 Lusin's theorem)}{}
+    \( f \) を \( X \) 上の複素可測関数とし, \( \mu(A)<\infty \) かつ \( x\notin A  \) で \( f(x)=0 \) とする. このとき, 任意の \( \epsilon>0 \) に対して, 関数 \( g\in C_c(X) \) が存在して,
+    \begin{align*}
+        \mu(\{ x\in X \ | \ f(x)\neq g(x) \}) < \epsilon
+    \end{align*}
+    となる. さらに, \( g \) は次が成り立つようにとれる. 
+    \begin{align*}
+        \sup_{x\in X} |g(x)|\leq \sup_{x\in X} |f(x)|
+    \end{align*}
+\end{thm}
+
+\begin{cor}{(Corollary)}{}
+    \( f \) を \( X \) 上の複素可測関数とし, \( |f|\leq 1 \) かつ \( \mu(A)<\infty \) かつ \( x\notin A  \) で \( f(x)=0 \) とする. このとき, 関数列 \( \{g_n\} \) が存在して, \( g_n\in C_c(X), |g_n|\leq 1 \) かつ, 次が成り立つ. 
+    \begin{align*}
+        \lim_{n\to \infty} g_n(x) = f(x) \ \text{a.e.}
+    \end{align*}
+\end{cor}
+
+\begin{thm}{(2.25 Vitali-Caratheodoryの定理)}{}
+    \( f\in L^1(\mu) \) を実数値関数とし, \( \epsilon>0 \) とする. このとき, \( X \) 上の関数 \( u, v\) が存在して, \( u\leq f\leq v \) , \( u \) は上半連続かつ上に有界, \( v \) は下半連続かつ下に有界であり, 次を満たす. 
+    \begin{align*}
+        \int_X (v-u)d\mu < \epsilon
+    \end{align*}
+\end{thm}
+
 
 \end{document}
 
